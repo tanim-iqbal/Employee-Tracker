@@ -9,13 +9,13 @@ const mainQuestion = [  {
     name: 'pick',
     message: 'What would you like to do? ',
     choices: ['View All Employees', 'Add Employee', 'Update Employee Role', 'View All Role', 'Add Role', 'View All Departments', 'Add Department', 'Quit']
-  }
+  },
 ]
-const addDepartment = [
+const addDepartmentQs = [
     {
     type: 'input',
     name: 'addDepName',
-    message: 'What department?',
+    message: 'What department?\n',
     }
 ]
 
@@ -66,13 +66,18 @@ function menu(mainQuestion){
           db.viewAllDepartments();
           break;
         case 'Add Department':
-          db.addDepartment()
+          inquirer
+          .prompt(addDepartmentQs)
+          .then((data) => {
+            //db.addDepartment(data.addDepName);
+            console.log("Working", data.addDepName); 
+          })
           break;
         default:
           console.log("Finished! Thank you!")
           break;
-      }
-      menu(mainQuestion);
+        }
+        menu(mainQuestion);
     })
 }
 menu(mainQuestion);
