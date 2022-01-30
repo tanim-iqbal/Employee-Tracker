@@ -19,7 +19,7 @@ const addDepartmentQs = [
     }
 ]
 
-const addEmployee = [
+const addEmployeeQs = [
     {
         type: 'input',
         name: 'addFisrtName',
@@ -51,7 +51,12 @@ function menu(mainQuestion){
           db.findAll(); 
           break;
         case 'Add Employee':
-          db.addEmployee(); 
+          inquirer
+          .prompt(addEmployeeQs)
+          .then((data) => {
+            //db.addDepartment(data.addDepName);
+            console.log("Working", data.addEmployeeQs); 
+          }) 
           break;
         case 'Update Employee Role':
           db.updateEmpRole();
@@ -69,7 +74,7 @@ function menu(mainQuestion){
           inquirer
           .prompt(addDepartmentQs)
           .then((data) => {
-            //db.addDepartment(data.addDepName);
+            db.addDepartment(data.addDepName);
             console.log("Working", data.addDepName); 
           })
           break;
@@ -77,7 +82,7 @@ function menu(mainQuestion){
           console.log("Finished! Thank you!")
           break;
         }
-        menu(mainQuestion);
+        // menu(mainQuestion);
     })
 }
 menu(mainQuestion);
